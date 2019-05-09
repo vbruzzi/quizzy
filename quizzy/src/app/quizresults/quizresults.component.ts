@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-quizresults',
@@ -10,9 +12,9 @@ export class QuizresultsComponent implements OnInit {
 
   correctAnswers: number = 0;
   result: string;
+  score: number;
 
-  constructor() { }
-
+  onstructor() {}
 
   processAnswers() {
     this.correctAnswers = 0;
@@ -23,6 +25,7 @@ export class QuizresultsComponent implements OnInit {
     });
     console.log(this.correctAnswers + '/' + this.answers.length)
     this.result = this.correctAnswers + '/' + this.answers.length;
+    this.score = this.correctAnswers/this.answers.length;
   }
   ngOnInit() {
   }

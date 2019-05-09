@@ -1,7 +1,26 @@
 <div>
-  Results: {{ result }}
-  <li *ngFor="let answer of answers">
-    {{ answer['answer'] }} <span *ngIf="answer['correctAnswer']">- {{ answer['correctAnswer'] }}</span>
-  </li>
+  <mat-card>
+      <mat-card-content>
+          <h1>Result: <span 
+            [ngClass]="{'bad': score < .5, 'okay': score == .5, 'good': score > .5}">
+            {{ result }}
+          </span>
+        </h1>
+      </mat-card-content>
+  </mat-card>
 
+  <mat-list>
+      <mat-list-item *ngFor="let answer of answers">
+        <mat-icon class="good" mat-list-icon *ngIf="answer['correct']">done</mat-icon>
+        <mat-icon class="bad" mat-list-icon *ngIf="!answer['correct']">clear</mat-icon>
+        <h4 mat-line>{{ answer['question']}}</h4>
+        <p 
+          [ngClass]="{'bad': !answer['correct'], 'good': answer['correct']}" 
+          mat-line>
+          {{ answer['answer'] }} 
+          <span class="good"  *ngIf="!answer['correct']">
+            | Answer: {{ answer['correctAnswer'] }}</span> 
+        </p>
+      </mat-list-item>
+    </mat-list>
 </div>

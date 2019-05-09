@@ -4,7 +4,17 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MatButtonModule, MatRadioModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { MatButtonModule,
+         MatRadioModule,
+         MatCardModule,
+         MatGridListModule,
+         MatListModule,
+         MatIconModule,
+         MatInputModule,
+         MatFormFieldModule,
+         MatDividerModule,
+         MatExpansionModule,
+         MatProgressBarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz/quiz.component';
@@ -34,8 +44,15 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
+    MatProgressBarModule,
     MatRadioModule,
+    MatListModule,
+    MatIconModule,
+    MatDividerModule,
+    MatInputModule,
     MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
     MatGridListModule,
     RouterModule.forRoot(appRoutes)
   ],

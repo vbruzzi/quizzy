@@ -18,6 +18,9 @@ export class QuizviewComponent implements OnInit {
   count: number;
   // user choice for current question, used with ngmodel
   choice:string;
+  // Progress bar values
+  progress:number = 0;
+  progressIncrements: number;
 
   //Shifts to next question
   next() {
@@ -34,6 +37,7 @@ export class QuizviewComponent implements OnInit {
 
     this.answers.push(answer);
     this.count--;
+    this.progress += this.progressIncrements;
 
     // Quiz is finished
     if(this.count < 0) {
@@ -50,7 +54,7 @@ export class QuizviewComponent implements OnInit {
     if(this.questions) {
       this.count = this.questions.length-1;
       this.currentQuestion = this.questions[this.count];
-
+      this.progressIncrements = 100/this.questions.length;
     }
   }
 

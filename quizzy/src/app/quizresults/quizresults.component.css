@@ -1,0 +1,21 @@
+mat-card {
+    padding: 50px;
+}
+
+.bad {
+    color: red;
+}
+
+.okay {
+    color: rgb(255, 166, 0);
+}
+
+.good {
+    color: green;
+}
+
+mat-list {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}

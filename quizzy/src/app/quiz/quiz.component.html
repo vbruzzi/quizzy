@@ -1,12 +1,18 @@
-<app-quizview
-*ngIf="status"
-[questions]="questions"
-(finishedQuiz)="showResults($event)">
-</app-quizview>
-
-<app-quizresults
-*ngIf="!status"
-[answers]="answers"
->
-
-</app-quizresults>
+<div id="question">
+    <h1 id="title">
+        {{ quizName }}
+    </h1>
+            
+    <app-quizview
+    *ngIf="status"
+    [questions]="questions"
+    (finishedQuiz)="showResults($event)">
+    </app-quizview>
+    
+    <app-quizresults
+    *ngIf="!status"
+    [answers]="answers"
+    >
+    
+    </app-quizresults>
+</div>

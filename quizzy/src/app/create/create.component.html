@@ -1,1 +1,53 @@
-CREATE MODULE
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let question of questions">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ question['question'] }}
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field [(ngModel)]="question['question']" name="fieldName" ngDefaultControl>
+            <input matInput placeholder="Question">
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-radio-button>
+        </mat-radio-button>
+        <mat-form-field>
+
+            <input matInput placeholder="Option">
+        </mat-form-field>
+
+        <mat-radio-button>
+        </mat-radio-button>
+        <mat-form-field>
+
+            <input matInput placeholder="Option">
+        </mat-form-field>
+
+        <br>
+
+        <mat-radio-button>
+        </mat-radio-button>
+        <mat-form-field>
+
+            <input matInput placeholder="Option">
+        </mat-form-field>
+
+        <mat-radio-button>
+        </mat-radio-button>
+        <mat-form-field>
+
+            <input matInput placeholder="Option">
+        </mat-form-field>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<button mat-stroked-button color="primary" (click)="addNew()">
+    Add Question
+</button>
+
+<button mat-stroked-button color="primary">
+    Make Quiz
+</button>
