@@ -1,0 +1,7 @@
+<div>
+  Results: {{ result }}
+  <li *ngFor="let answer of answers">
+    {{ answer['answer'] }} <span *ngIf="answer['correctAnswer']">- {{ answer['correctAnswer'] }}</span>
+  </li>
+
+</div>

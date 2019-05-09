@@ -1,0 +1,21 @@
+<div *ngIf="questions">
+    <mat-card>
+        <mat-card-content>
+            {{ currentQuestion['question'] }}
+        </mat-card-content>
+    </mat-card>
+
+    <mat-radio-group #options [(ngModel)]="choice">
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile #options *ngFor="let option of currentQuestion['options']">
+                <mat-radio-button
+                [value]="option">
+                        {{ option }}
+                </mat-radio-button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-radio-group>
+        
+    <button [disabled]="!choice" (click)="next()">Next</button>
+
+</div>

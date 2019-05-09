@@ -1,0 +1,12 @@
+<app-quizview
+*ngIf="status"
+[questions]="questions"
+(finishedQuiz)="showResults($event)">
+</app-quizview>
+
+<app-quizresults
+*ngIf="!status"
+[answers]="answers"
+>
+
+</app-quizresults>
