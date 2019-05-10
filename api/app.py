@@ -20,10 +20,15 @@ def get_quiz(quizId):
         output = {'name': x['name'], 'questions': x['questions']}
         return jsonify(output)
           
-@app.route('/quiz', methods=["POST"])
-def add_note():
-        note = (request.json['note'])
-        insertNote = col.insert({'note':note})
-        returnNote = col.find_one({'_id': insertNote})
-        output = {'_id': str(returnNote['_id']), 'note': returnNote['note']}
-        return jsonify(output)
+@app.route('/create', methods=["POST"])
+def create_quiz():
+        quiz = request.get_json()
+        insertedQuiz = col.insert(quiz)
+#       returnQuiz = col.find_one({'_id': insertedQuiz})
+#       output = {'_id': str(returnQuiz['_id'])}
+        return '', 202
+
+
+@app.route('/create', methods=["OPTIONS"])
+def return_options():
+        return '' , 200

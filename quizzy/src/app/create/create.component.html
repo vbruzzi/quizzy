@@ -1,53 +1,69 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let question of questions">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{ question['question'] }}
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-        </mat-expansion-panel-header>
+    <form [formGroup]="quizForm">
+        <input matInput formControlName="quizName">
+        <div formArrayName="questions">
+            <mat-expansion-panel *ngFor="let question of formQuestions.controls; let i = index;" [formGroupName]="i">
 
-        <mat-form-field [(ngModel)]="question['question']" name="fieldName" ngDefaultControl>
-            <input matInput placeholder="Question">
-        </mat-form-field>
-        <mat-divider></mat-divider>
-        <mat-radio-button>
-        </mat-radio-button>
-        <mat-form-field>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
 
-            <input matInput placeholder="Option">
-        </mat-form-field>
+                        title here
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-        <mat-radio-button>
-        </mat-radio-button>
-        <mat-form-field>
+                <mat-form-field>
+                    <input formControlName="question" matInput placeholder="Question">
+                </mat-form-field>
 
-            <input matInput placeholder="Option">
-        </mat-form-field>
+                
+                <mat-divider></mat-divider>
+                <mat-radio-group formControlName="correct">
+                        <mat-radio-button [value]="value(question.controls.option1.value)">
+                
+                </mat-radio-button>
+            
+                <mat-form-field>
 
-        <br>
+                    <input formControlName="option1" matInput name="test" placeholder="Option">
+                </mat-form-field>
 
-        <mat-radio-button>
-        </mat-radio-button>
-        <mat-form-field>
+                <mat-radio-button [value]="value(question.controls.option2.value)">
+                </mat-radio-button>
+                <mat-form-field>
 
-            <input matInput placeholder="Option">
-        </mat-form-field>
+                    <input formControlName="option2" matInput placeholder="Option">
+                </mat-form-field>
 
-        <mat-radio-button>
-        </mat-radio-button>
-        <mat-form-field>
+                <br>
 
-            <input matInput placeholder="Option">
-        </mat-form-field>
-    </mat-expansion-panel>
+                <mat-radio-button [value]="value(question.controls.option3.value)">
+                </mat-radio-button>
+                <mat-form-field>
+
+                    <input formControlName="option3" matInput placeholder="Option">
+                </mat-form-field>
+
+                <mat-radio-button [value]="value(question.controls.option4.value)">
+                </mat-radio-button>
+            </mat-radio-group>
+                <mat-form-field>
+
+                    <input formControlName="option4" matInput placeholder="Option">
+                </mat-form-field>
+            </mat-expansion-panel>
+        </div>
+
+
+    </form>
+
 </mat-accordion>
 
-<button mat-stroked-button color="primary" (click)="addNew()">
+<button mat-stroked-button color="primary" (click)="addQuestion()">
     Add Question
 </button>
 
-<button mat-stroked-button color="primary">
+<button mat-stroked-button color="primary" (click)="onSubmit()">
     Make Quiz
 </button>
