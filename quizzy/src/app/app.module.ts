@@ -23,9 +23,11 @@ import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuizviewComponent } from './quizview/quizview.component';
 import { QuizresultsComponent } from './quizresults/quizresults.component';
+import { HomeComponent } from './home/home.component';
 
 
 const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'quiz/:id', component: QuizComponent},
   {path: 'create', component: CreateComponent},
 ];
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     QuizComponent,
     CreateComponent,
     QuizviewComponent,
-    QuizresultsComponent
+    QuizresultsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

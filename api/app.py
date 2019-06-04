@@ -24,9 +24,9 @@ def get_quiz(quizId):
 def create_quiz():
         quiz = request.get_json()
         insertedQuiz = col.insert(quiz)
-#       returnQuiz = col.find_one({'_id': insertedQuiz})
-#       output = {'_id': str(returnQuiz['_id'])}
-        return '', 202
+        returnQuiz = col.find_one({'_id': insertedQuiz})
+        output = {'_id': str(returnQuiz['_id'])}
+        return jsonify(output)
 
 
 @app.route('/create', methods=["OPTIONS"])

@@ -16,7 +16,8 @@ export class CreateComponent implements OnInit {
 
   quizForm: FormGroup;
   model: Object = {'question': 'Question', 'options':["", "", "", ""]};
-  test = "";
+  submitted: boolean = false;
+  quizUrl: string = "";
 
   get formQuestions(){
     return this.quizForm.get('questions') as FormArray;
@@ -42,7 +43,7 @@ export class CreateComponent implements OnInit {
     }
     console.log(submitItem)
     this.service.createQuiz(submitItem)
-    .subscribe(data => console.log(data));
+    .subscribe(data => {this.quizUrl=data['_id']; this.submitted = true;});
   }
 
   addQuestion() {
