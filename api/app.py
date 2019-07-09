@@ -6,7 +6,8 @@ from bson import ObjectId
 import json
 import markdown
 
-client = MongoClient("mongodb+srv://vitor:HGaPxICYFnhXPxKq@cluster0-zejls.mongodb.net/test?retryWrites=true")
+mongoURI = "mongodb+srv://vitor:z5GSXMXZ4ksGlPm2@cluster0-zejls.mongodb.net/test?retryWrites=true"
+client = MongoClient(mongoURI)
 db = client.Quizzy
 col = db.Quizes
 
@@ -26,7 +27,7 @@ def create_quiz():
         insertedQuiz = col.insert(quiz)
         returnQuiz = col.find_one({'_id': insertedQuiz})
         output = {'_id': str(returnQuiz['_id'])}
-        return jsonify(output)
+        return jsonify(output), 201
 
 
 @app.route('/create', methods=["OPTIONS"])
