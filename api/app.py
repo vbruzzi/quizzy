@@ -4,9 +4,8 @@ from bson import json_util
 from flask_cors import CORS
 from bson import ObjectId
 import json
-import markdown
 
-mongoURI = "URI HERE"
+mongoURI = "URI HEREz"
 client = MongoClient(mongoURI)
 db = client.Quizzy
 col = db.Quizes
