@@ -6,7 +6,7 @@ from bson import ObjectId
 import json
 import markdown
 
-mongoURI = "mongodb+srv://vitor:z5GSXMXZ4ksGlPm2@cluster0-zejls.mongodb.net/test?retryWrites=true"
+mongoURI = "URI HERE"
 client = MongoClient(mongoURI)
 db = client.Quizzy
 col = db.Quizes
