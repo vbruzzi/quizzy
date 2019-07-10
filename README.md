@@ -2,9 +2,8 @@
 
 Quizzy is a web app for creating and taking quizes. It is made with Python, Angular and MongoDB. 
 
-## Running
-
-To run Quizzy, follow the instructions on the README `/api` and `/quizzy` and run them simultaneously. 
+## Setup
+To set up, you should run `npm install` to install any packages needed. After that, you can run `ng serve -o` and the website will open. This is the front-end for app, so you still have to run the API simultaneously. You can find the API [here]().
 
 ## Media
 
