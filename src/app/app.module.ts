@@ -24,6 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuizviewComponent } from './quizview/quizview.component';
 import { QuizresultsComponent } from './quizresults/quizresults.component';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     CreateComponent,
     QuizviewComponent,
     QuizresultsComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
