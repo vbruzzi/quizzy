@@ -7,14 +7,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './quizresults.component.html',
   styleUrls: ['./quizresults.component.css']
 })
-export class QuizresultsComponent implements OnInit {
+export class QuizresultsComponent{
   @Input() answers;
 
   correctAnswers: number = 0;
   result: string;
   score: number;
-
-  onstructor() {}
 
   processAnswers() {
     this.correctAnswers = 0;
@@ -26,8 +24,6 @@ export class QuizresultsComponent implements OnInit {
     console.log(this.correctAnswers + '/' + this.answers.length)
     this.result = this.correctAnswers + '/' + this.answers.length;
     this.score = this.correctAnswers/this.answers.length;
-  }
-  ngOnInit() {
   }
 
   ngOnChanges() {

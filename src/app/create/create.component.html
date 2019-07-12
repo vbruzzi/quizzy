@@ -1,10 +1,19 @@
-<div class="container"> 
+<app-header>
+
+</app-header>
+<div class="container">
     <div class="creation" *ngIf="!submitted">
         <mat-accordion>
             <form [formGroup]="quizForm">
-                <mat-form-field>
-                    <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
-                </mat-form-field>
+              <div class="formHeader">
+                  <mat-form-field>
+                      <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
+                  </mat-form-field>
+                  <button mat-stroked-button color="primary" (click)="addQuestion()">
+                    Add Question
+                </button>
+              </div>
+
                 <div formArrayName="questions">
                     <mat-expansion-panel *ngFor="let question of formQuestions.controls; let i = index;"
                         [formGroupName]="i"
@@ -67,22 +76,24 @@
         </mat-accordion>
 
         <div class="buttons">
-            <button mat-stroked-button color="primary" (click)="addQuestion()">
-            Add Question
-        </button>
-
-        <button mat-stroked-button color="primary" [disabled]="!quizForm.valid || formQuestions.controls.length < 1" (click)="onSubmit()">
-            Make Quiz
-        </button>
-    </div>
+          <button
+            mat-stroked-button color="primary"
+            [disabled]="!quizForm.valid || formQuestions.controls.length < 1"
+            (click)="onSubmit()">
+              Make Quiz
+          </button>
+        </div>
     </div>
     <div *ngIf="submitted">
         <mat-card>
             <mat-card-content>
                 Your quiz link is: <br>
-                localhost:4200/quiz/<span>{{quizUrl}}</span>
+                quizzy-vbruzzi.herokuapp.com/quiz/<span>{{quizUrl}}</span>
             </mat-card-content>
         </mat-card>
     </div>
 
 </div>
+<app-footer>
+
+</app-footer>

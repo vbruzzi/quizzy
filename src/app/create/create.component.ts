@@ -11,44 +11,55 @@ import { QuizesService } from '../quizes.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
               private service: QuizesService) { }
 
   quizForm: FormGroup;
-  model: Object = {'question': 'Question', 'options':["", "", "", ""]};
-  submitted: boolean = false;
-  quizUrl: string = "";
+  model = {question: 'Question', options: ['', '', '', '']};
+  submitted = false;
+  quizUrl = '';
+  quizMinReq = false;
 
-  get formQuestions(){
+  get formQuestions() {
     return this.quizForm.get('questions') as FormArray;
   }
   value(input) {
-    if(typeof input === "string") {
-      return input
+    if (typeof input === 'string') {
+      return input;
     }
   }
 
   onSubmit() {
     const quiz = this.quizForm.value;
-    let submitItem: Object = {
-      "name": quiz.quizName,
-      "questions": []
-    }
-    for(let question in quiz.questions) {
+    const submitItem: object = {
+      name: quiz.quizName,
+      questions: []
+    };
+
+    for (const question of quiz.questions) {
       const currentQuestion = quiz.questions[question];
-      const pushItem = {"question":currentQuestion['question'],
-                    "options": [currentQuestion['option1'],currentQuestion['option2'],currentQuestion['option3'],currentQuestion['option4']],
-                    "answer": currentQuestion['correct']}
+      const pushItem = {
+        question: currentQuestion['question'],
+        options: [
+          currentQuestion['option1'],
+          currentQuestion['option2'],
+          currentQuestion['option3'],
+          currentQuestion['option4']
+        ],
+        answer: currentQuestion['correct']
+      };
       submitItem['questions'].push(pushItem);
     }
-    console.log(submitItem)
     this.service.createQuiz(submitItem)
-    .subscribe(data => {this.quizUrl=data['_id']; this.submitted = true;});
+    .subscribe(data => {
+      this.quizUrl = data['_id'];
+      this.submitted = true;
+    });
   }
 
   addQuestion() {
     const question = this.fb.group({
-      question:[],
+      question: [],
       correct: [],
       option1: [],
       option2: [],
@@ -60,7 +71,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.quizForm = this.fb.group({
-      quizName: "",
+      quizName: '',
       questions: this.fb.array([])
     });
   }
