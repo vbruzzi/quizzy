@@ -17,20 +17,20 @@
                 <div formArrayName="questions">
                     <mat-expansion-panel *ngFor="let question of formQuestions.controls; let i = index;"
                         [formGroupName]="i"
-                        [ngClass]="{'invalid': !question.valid}">
+                        [ngClass]="{'invalid': !question.valid}"
+                        expanded='true'>
 
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-
-                                {{i+1}}.{{value(question.controls.question.value)}}
+                              <mat-form-field>
+                                <input formControlName="question" placeholder=" Question #{{i+1}}" matInput  (keydown)="$event.stopPropagation()">
+                            </mat-form-field>
                             </mat-panel-title>
                             <mat-panel-description>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
-                        <mat-form-field>
-                            <input formControlName="question" matInput placeholder="Question">
-                        </mat-form-field>
+
 
 
                         <mat-divider></mat-divider>
