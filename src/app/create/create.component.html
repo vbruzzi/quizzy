@@ -17,8 +17,7 @@
                 <div formArrayName="questions">
                     <mat-expansion-panel *ngFor="let question of formQuestions.controls; let i = index;"
                         [formGroupName]="i"
-                        [ngClass]="{'invalid': !question.valid}"
-                        expanded='true'>
+                        [ngClass]="{ 'invalid': !question.valid && question.touched }">
 
                         <mat-expansion-panel-header>
                             <mat-panel-title>
