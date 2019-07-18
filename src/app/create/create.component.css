@@ -10,9 +10,6 @@ mat-form-field {
   min-height:80vh;
 }
 
-.creation, form {
-}
-
 .buttons {
     margin-top: 20px;
 }
@@ -33,4 +30,8 @@ span {
 mat-card-content {
     text-align: center;
     padding: 25px;
+}
+
+.addQuestion {
+  background-color: rgb(88, 103, 187);
 }

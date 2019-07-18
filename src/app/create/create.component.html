@@ -9,9 +9,6 @@
                   <mat-form-field>
                       <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
                   </mat-form-field>
-                  <button mat-stroked-button color="primary" (click)="addQuestion()">
-                    Add Question
-                </button>
               </div>
 
                 <div formArrayName="questions">
@@ -19,10 +16,16 @@
                         [formGroupName]="i"
                         [ngClass]="{ 'invalid': !question.valid && question.touched }">
 
-                        <mat-expansion-panel-header>
+                        <mat-expansion-panel-header
+                        [collapsedHeight]="'70px'">
                             <mat-panel-title>
                               <mat-form-field>
-                                <input formControlName="question" placeholder=" Question #{{i+1}}" matInput  (keydown)="$event.stopPropagation()">
+
+                                  <input
+                                    formControlName="question"
+                                    placeholder="Question #{{i+1}}"
+                                    (keydown)="$event.stopPropagation()"
+                                    matInput>
                             </mat-form-field>
                             </mat-panel-title>
                             <mat-panel-description>
@@ -67,6 +70,11 @@
                             <input formControlName="option4" matInput placeholder="Option" required>
                         </mat-form-field>
                     </mat-expansion-panel>
+                    <mat-card class="addQuestion" (click)="addQuestion()">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">
+                        add
+                      </mat-icon>
+                    </mat-card>
                 </div>
 
 

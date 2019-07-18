@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { QuizComponent } from '../quiz/quiz.component';
 import { QuizesService } from '../quizes.service';
 
+// Quiz creation component
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
+
 export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
@@ -20,9 +22,11 @@ export class CreateComponent implements OnInit {
   quizUrl = '';
   quizMinReq = false;
 
+  // Returns the questions in quizForm.
   get formQuestions() {
     return this.quizForm.get('questions') as FormArray;
   }
+
   value(input) {
     if (typeof input === 'string') {
       return input;
@@ -31,7 +35,7 @@ export class CreateComponent implements OnInit {
 
   onSubmit() {
     const quiz = this.quizForm.value;
-    const submitItem: object = {
+    const submitItem = {
       name: quiz.quizName,
       questions: []
     };
@@ -39,25 +43,27 @@ export class CreateComponent implements OnInit {
     for (const question of quiz.questions) {
       const currentQuestion = quiz.questions[question];
       const pushItem = {
-        question: currentQuestion['question'],
+        question: currentQuestion.question,
         options: [
-          currentQuestion['option1'],
-          currentQuestion['option2'],
-          currentQuestion['option3'],
-          currentQuestion['option4']
+          currentQuestion.option1,
+          currentQuestion.option2,
+          currentQuestion.option3,
+          currentQuestion.option4
         ],
-        answer: currentQuestion['correct']
+        answer: currentQuestion.correct
       };
-      submitItem['questions'].push(pushItem);
+      submitItem.questions.push(pushItem);
     }
     this.service.createQuiz(submitItem)
     .subscribe(data => {
-      this.quizUrl = data['_id'];
+      this.quizUrl = data._id;
       this.submitted = true;
     });
   }
 
+  // Empty question skeleton
   addQuestion() {
+    console.log(this.formQuestions)
     const question = this.fb.group({
       question: [],
       correct: [],
