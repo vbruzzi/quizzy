@@ -27,12 +27,6 @@ export class CreateComponent implements OnInit {
     return this.quizForm.get('questions') as FormArray;
   }
 
-  value(input) {
-    if (typeof input === 'string') {
-      return input;
-    }
-  }
-
   onSubmit() {
     const quiz = this.quizForm.value;
     const submitItem = {
@@ -41,29 +35,34 @@ export class CreateComponent implements OnInit {
     };
 
     for (const question of quiz.questions) {
-      const currentQuestion = quiz.questions[question];
-      const pushItem = {
-        question: currentQuestion.question,
+      let pushItem = {
+        question: question.question,
         options: [
-          currentQuestion.option1,
-          currentQuestion.option2,
-          currentQuestion.option3,
-          currentQuestion.option4
+          question.option1,
+          question.option2,
+          question.option3,
+          question.option4
         ],
-        answer: currentQuestion.correct
+        answer: null
       };
+
+      pushItem.answer = pushItem.options[question.correct - 1];
+
+      console.log(pushItem);
+
       submitItem.questions.push(pushItem);
     }
+    /*
     this.service.createQuiz(submitItem)
     .subscribe(data => {
       this.quizUrl = data._id;
       this.submitted = true;
-    });
+    });*/
   }
 
   // Empty question skeleton
   addQuestion() {
-    console.log(this.formQuestions)
+    console.log(this.formQuestions);
     const question = this.fb.group({
       question: [],
       correct: [],

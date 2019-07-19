@@ -1,106 +1,94 @@
 <app-header>
 
 </app-header>
+
 <div class="container">
-    <div class="creation" *ngIf="!submitted">
-        <mat-accordion>
-            <form [formGroup]="quizForm">
-              <div class="formHeader">
-                  <mat-form-field>
-                      <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
-                  </mat-form-field>
-              </div>
+  <div class="creation" *ngIf="!submitted">
+    <form [formGroup]="quizForm">
+        <mat-form-field>
+            <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
+        </mat-form-field>
 
-                <div formArrayName="questions">
-                    <mat-expansion-panel *ngFor="let question of formQuestions.controls; let i = index;"
-                        [formGroupName]="i"
-                        [ngClass]="{ 'invalid': !question.valid && question.touched }">
+        <div formArrayName="questions">
 
-                        <mat-expansion-panel-header
-                        [collapsedHeight]="'70px'">
-                            <mat-panel-title>
-                              <mat-form-field>
+            <mat-card *ngFor="let question of formQuestions.controls; let i = index;"
+            [formGroupName]="i"
+            [ngClass]="{ 'invalid': !question.valid && question.touched }">
+                      <input
+                        formControlName="question"
+                        placeholder="Question #{{i+1}}"
+                        (keydown)="$event.stopPropagation()"
+                        matInput>
 
-                                  <input
-                                    formControlName="question"
-                                    placeholder="Question #{{i+1}}"
-                                    (keydown)="$event.stopPropagation()"
-                                    matInput>
-                            </mat-form-field>
-                            </mat-panel-title>
-                            <mat-panel-description>
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
+            <mat-radio-group formControlName="correct" required>
+                <mat-radio-button value = 1>
 
+                </mat-radio-button>
 
+                <mat-form-field>
 
+                    <input formControlName="option1" matInput name="test" placeholder="Option" required>
+                </mat-form-field>
 
-                        <mat-divider></mat-divider>
-                        <mat-radio-group formControlName="correct" required>
-                            <mat-radio-button [value]="value(question.controls.option1.value)" >
+                <mat-radio-button value = 2>
+                </mat-radio-button>
+                <mat-form-field>
 
-                            </mat-radio-button>
+                    <input formControlName="option2" matInput placeholder="Option" required>
+                </mat-form-field>
 
-                            <mat-form-field>
+                <br>
 
-                                <input formControlName="option1" matInput name="test" placeholder="Option" required>
-                            </mat-form-field>
+                <mat-radio-button value = 3>
+                </mat-radio-button>
+                <mat-form-field>
 
-                            <mat-radio-button [value]="value(question.controls.option2.value)">
-                            </mat-radio-button>
-                            <mat-form-field>
+                    <input formControlName="option3" matInput placeholder="Option" required>
+                </mat-form-field>
 
-                                <input formControlName="option2" matInput placeholder="Option" required>
-                            </mat-form-field>
+                <mat-radio-button value = 4>
+                </mat-radio-button>
+            </mat-radio-group>
+              <mat-form-field>
+                <input formControlName="option4" matInput placeholder="Option" required>
+            </mat-form-field>
+          </mat-card>
+        </div>
 
-                            <br>
-
-                            <mat-radio-button [value]="value(question.controls.option3.value)">
-                            </mat-radio-button>
-                            <mat-form-field>
-
-                                <input formControlName="option3" matInput placeholder="Option" required>
-                            </mat-form-field>
-
-                            <mat-radio-button [value]="value(question.controls.option4.value)">
-                            </mat-radio-button>
-                        </mat-radio-group>
-                        <mat-form-field>
-
-                            <input formControlName="option4" matInput placeholder="Option" required>
-                        </mat-form-field>
-                    </mat-expansion-panel>
-                    <mat-card class="addQuestion" (click)="addQuestion()">
-                      <mat-icon aria-hidden="false" aria-label="Example home icon">
-                        add
-                      </mat-icon>
-                    </mat-card>
-                </div>
-
-
-            </form>
-
-        </mat-accordion>
+        <mat-card class="addQuestion" (click)="addQuestion()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">
+            add
+          </mat-icon>
+        </mat-card>
 
         <div class="buttons">
-          <button
-            mat-stroked-button color="primary"
-            [disabled]="!quizForm.valid || formQuestions.controls.length < 1"
-            (click)="onSubmit()">
-              Make Quiz
-          </button>
-        </div>
-    </div>
-    <div *ngIf="submitted">
-        <mat-card>
-            <mat-card-content>
-                Your quiz link is: <br>
-                quizzy-vbruzzi.herokuapp.com/quiz/<span>{{quizUrl}}</span>
-            </mat-card-content>
-        </mat-card>
-    </div>
+            <button
+              mat-stroked-button color="primary"
+              [disabled]="(!quizForm.valid || formQuestions.controls.length < 1)"
+              (click)="onSubmit()">
+                Make Quiz
+            </button>
+          </div>
 
+        <div *ngIf="submitted">
+            <mat-card>
+                <mat-card-content>
+                    Your quiz link is: <br>
+                    quizzy-vbruzzi.herokuapp.com/quiz/<span>{{quizUrl}}</span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </form>
+  </div>
 </div>
+
+
+
+
+
+
+
+
 <app-footer>
 
 </app-footer>
