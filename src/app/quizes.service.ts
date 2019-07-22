@@ -14,14 +14,14 @@ export class QuizesService {
 
   constructor(private http: HttpClient) { }
 
-  api = 'http://thawing-waters-52286.herokuapp.com/';
+  api = 'https://thawing-waters-52286.herokuapp.com/';
 
   getQuiz(quizId): Observable<object> {
     return this.http.get(this.api + 'quiz/' + quizId);
   }
 
   createQuiz(quiz: object): Observable<any> {
-    return this.http.post<object>('http://thawing-waters-52286.herokuapp.com/create', // API link
+    return this.http.post<object>('https://thawing-waters-52286.herokuapp.com/create', // API link
                                   JSON.stringify(quiz), // Object to be posted
                                   this.httpOptions); // Header
   }
