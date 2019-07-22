@@ -12,12 +12,15 @@ export class QuizComponent implements OnInit {
     private service: QuizesService,
     private route: ActivatedRoute,
     ) {}
-  // Stores all questions to pass on to quizview
-  questions: Object;
 
+  // Stores all questions and quizname
+  // to pass on to quizview
+  questions: Object;
   quizName:string;
+
   // Answers to pass to quizresults
   answers: Array<Object>;
+
   // Status for showing quiz/results (true means you're still doing quiz)
   status: boolean = true;
 
@@ -30,10 +33,23 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
     // Gets quiz ID from url
     const id = this.route.snapshot.params['id'];
+
     // Fetches quiz via API
-    this.service.getQuiz(id).subscribe(data => {
-      this.quizName = data['name'];
-      this.questions = data['questions'];
-    });
+    if(id == 'random') {
+      this.service.getRandom().subscribe(data => {
+        this.quizName = data['name'];
+        this.questions = data['questions'];
+      });
+    } else {
+      try {
+        this.service.getQuiz(id).subscribe(data => {
+          this.quizName = data['name'];
+          this.questions = data['questions'];
+        });
+      }
+      catch(error) {
+    
+      }
+    }
   }
 }
