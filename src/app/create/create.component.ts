@@ -4,32 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { QuizComponent } from '../quiz/quiz.component';
 import { QuizesService } from '../quizes.service';
 import { TemplateParseError } from '@angular/compiler';
-import { trigger,
-  state,
-  style,
-  animate,
-  transition,
-  keyframes } from '@angular/animations';
 
 // Quiz creation component
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css'], 
-  animations: [
-    trigger('fadeOut',  [
-      transition(':leave', animate(700, keyframes([
-        style({opacity: 1, offset: 0}),
-        style({opacity: 0, offset: 1})
-      ])))
-    ]),
-    trigger('fadeIn',  [
-      transition(':enter', animate(700, keyframes([
-        style({ opacity: 0 }),
-        style({ opacity: 1 })
-      ])))
-    ])
-  ]
+  styleUrls: ['./create.component.css']
 })
 
 export class CreateComponent implements OnInit {
@@ -38,20 +18,13 @@ export class CreateComponent implements OnInit {
               private service: QuizesService) { }
 
   quizForm: FormGroup;
-  // Model for questions
   model = {question: 'Question', options: ['', '', '', '']};
-  // Status for submit button
   formIsValid: any;
-  // URL for page
-  baseUrl = 'quizzy-vbruzzi.herokuapp.com/quiz/';
-  // Quiz ID
-  quizUrl = '';
-  // Quiz is submitted
   submitted = false;
-  // Copied quiz url
+  baseUrl = 'quizzy-vbruzzi.herokuapp.com/quiz/';
+  quizUrl = '';
+  quizMinReq = false;
   copied = false;
-  // Submission is complete (for displaying quiz url)
-  complete = false;
 
   // Returns the questions in quizForm.
   get formQuestions() {
@@ -93,7 +66,6 @@ export class CreateComponent implements OnInit {
 
   }
 
-
   // Empty question skeleton
   addQuestion() {
     const question = this.fb.group({
@@ -105,12 +77,6 @@ export class CreateComponent implements OnInit {
       option4: [],
     });
     this.formQuestions.push(question);
-  }
-
-  finishUpload() { 
-    if (this.submitted) {
-      this.complete = true;
-    }
   }
 
   copyUrl(): void {
