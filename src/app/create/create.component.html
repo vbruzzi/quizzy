@@ -1,6 +1,4 @@
-<app-header>
-
-</app-header>
+<app-header></app-header>
 
 <div class="container">
   <div class="creation" *ngIf="!submitted">
@@ -9,66 +7,83 @@
             <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
         </mat-form-field>
 
-        <div formArrayName="questions">
+        <div class="questions "formArrayName="questions">
+            <mat-card
+              *ngFor="let question of formQuestions.controls; let i = index;"
+              class="spacer"
+              [formGroupName]="i"
+              [ngClass]="{ 'invalid': !question.valid && question.touched }">
 
-            <mat-card *ngFor="let question of formQuestions.controls; let i = index;"
-            [formGroupName]="i"
-            [ngClass]="{ 'invalid': !question.valid && question.touched }">
-                      <input
-                        formControlName="question"
-                        placeholder="Question #{{i+1}}"
-                        (keydown)="$event.stopPropagation()"
-                        matInput>
+            <div>
+              <mat-form-field>
+                <input id="quizName" formControlName="question"
+                placeholder="Question #{{i+1}}"
+                (keydown)="$event.stopPropagation()"
+                matInput>
+              </mat-form-field>
+            </div>
+
+            <mat-divider></mat-divider>
 
             <mat-radio-group formControlName="correct" required>
                 <mat-radio-button value = 1>
-
                 </mat-radio-button>
 
                 <mat-form-field>
-
-                    <input formControlName="option1" matInput name="test" placeholder="Option" required>
+                    <input formControlName="option1" placeholder="Option" matInput required>
                 </mat-form-field>
 
                 <mat-radio-button value = 2>
                 </mat-radio-button>
-                <mat-form-field>
 
-                    <input formControlName="option2" matInput placeholder="Option" required>
+                <mat-form-field>
+                    <input formControlName="option2" placeholder="Option" matInput required>
                 </mat-form-field>
 
                 <br>
 
                 <mat-radio-button value = 3>
                 </mat-radio-button>
-                <mat-form-field>
 
-                    <input formControlName="option3" matInput placeholder="Option" required>
+                <mat-form-field>
+                    <input formControlName="option3" placeholder="Option" matInput required>
                 </mat-form-field>
 
                 <mat-radio-button value = 4>
                 </mat-radio-button>
+
+                <mat-form-field>
+                  <input formControlName="option4" placeholder="Option" matInput required>
+                </mat-form-field>
             </mat-radio-group>
-              <mat-form-field>
-                <input formControlName="option4" matInput placeholder="Option" required>
-            </mat-form-field>
           </mat-card>
         </div>
 
-        <mat-card class="addQuestion" (click)="addQuestion()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">
-            add
-          </mat-icon>
-        </mat-card>
-
-        <div class="buttons">
+        <div class="buttons spacer">
             <button
-              mat-stroked-button color="primary"
-              [disabled]="(!quizForm.valid || formQuestions.controls.length < 1)"
-              (click)="onSubmit()">
-                Make Quiz
-            </button>
-          </div>
+            color="primary"
+            (click)="addQuestion()"
+            mat-raised-button>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              add
+            </mat-icon>
+            Add Question
+          </button>
+
+          <br>
+
+          <button
+            mat-button
+            class="save"
+            (click)="onSubmit()"
+            [ngClass]="{'notReady' : formIsValid != 'VALID' || formQuestions.controls.length < 1}"
+            mat-raised-button>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" color="secondary">
+              save_alt
+            </mat-icon>
+            Submit
+          </button>
+        </div>
 
         <div *ngIf="submitted">
             <mat-card>
@@ -82,13 +97,4 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-<app-footer>
-
-</app-footer>
+<app-footer></app-footer>

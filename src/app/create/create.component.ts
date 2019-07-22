@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
 
   quizForm: FormGroup;
   model = {question: 'Question', options: ['', '', '', '']};
+  formIsValid: any;
   submitted = false;
   quizUrl = '';
   quizMinReq = false;
@@ -34,6 +35,7 @@ export class CreateComponent implements OnInit {
       questions: []
     };
 
+    // Formatting for submission
     for (const question of quiz.questions) {
       let pushItem = {
         question: question.question,
@@ -48,21 +50,19 @@ export class CreateComponent implements OnInit {
 
       pushItem.answer = pushItem.options[question.correct - 1];
 
-      console.log(pushItem);
-
       submitItem.questions.push(pushItem);
     }
-    /*
+
+    // Submits
     this.service.createQuiz(submitItem)
     .subscribe(data => {
       this.quizUrl = data._id;
       this.submitted = true;
-    });*/
+    });
   }
 
   // Empty question skeleton
   addQuestion() {
-    console.log(this.formQuestions);
     const question = this.fb.group({
       question: [],
       correct: [],
@@ -79,6 +79,11 @@ export class CreateComponent implements OnInit {
       quizName: '',
       questions: this.fb.array([])
     });
+    this.addQuestion();
+    this.onChanges();
   }
 
+  onChanges(): void {
+    this.quizForm.statusChanges.subscribe(status => this.formIsValid = status);
+  }
 }

@@ -1,37 +1,49 @@
-mat-form-field {
-    display: inline-block;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   min-height:80vh;
+  margin-top: 40px;
 }
 
-.buttons {
-    margin-top: 20px;
+.spacer {
+  margin-top: 10px;
 }
 
 #quizName {
-    width: 150px;
+  width: 150px;
+}
+
+mat-form-field {
+    display: inline-block;
+}
+
+mat-card-content {
+  text-align: center;
+  padding: 25px;
 }
 
 .invalid {
     background-color: rgb(255, 232, 232);
 }
 
+.buttons button {
+  width: 100% !important;
+  height: 40px;
+}
+
+.save {
+  cursor: pointer;
+  background-color: #4B8221;
+}
+
+.notReady {
+  cursor: default;
+  background-color: lightgray;
+}
+
 span {
-    font-weight: 500;
-    color: darkgreen;
-}
-
-mat-card-content {
-    text-align: center;
-    padding: 25px;
-}
-
-.addQuestion {
-  background-color: rgb(88, 103, 187);
+  font-weight: 500;
+  color: darkgreen;
 }
