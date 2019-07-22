@@ -1,7 +1,10 @@
 <app-header></app-header>
 
 <div class="container">
-  <div class="creation" *ngIf="!submitted">
+  <div class="creation" 
+    *ngIf="!submitted"
+    [@fadeOut]="!submitted"
+    (@fadeOut.done)="finishUpload()"> 
     <form [formGroup]="quizForm">
         <mat-form-field>
             <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
@@ -68,7 +71,7 @@
             color="primary"
             (click)="addQuestion()"
             mat-raised-button>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">
+            <mat-icon aria-hidden="false" aria-label="Add Question">
               add
             </mat-icon>
             Add Question
@@ -82,7 +85,7 @@
             (click)="onSubmit()"
             [disabled]="formIsValid != 'VALID' || formQuestions.controls.length < 1"
             mat-raised-button>
-            <mat-icon aria-hidden="false" aria-label="Example home icon" color="secondary">
+            <mat-icon aria-hidden="false" aria-label="Submit Quiz" color="secondary">
               save_alt
             </mat-icon>
             Submit
@@ -90,7 +93,9 @@
         </div>
     </form>
   </div>
-  <div *ngIf="submitted">
+  <div 
+    *ngIf="complete"
+    [@fadeIn] = "complete">
     <mat-card>
         <mat-card-content>
             Your quiz link is:
@@ -100,19 +105,26 @@
             <br>
 
             <span>{{quizUrl}}</span>
-            <mat-icon
+
+            <button
               *ngIf="!copied"
-              aria-hidden="false"
-              (click)="copyUrl()">
-              assignment
-            </mat-icon>
-            <mat-icon
+              (click)="copyUrl()"
+              mat-icon-button>
+              <mat-icon aria-hidden="false" aria-label="Copy to clipboard" color="secondary">
+                assignment
+              </mat-icon>
+            </button>
+
+            <button
               *ngIf="copied"
+              (click)="copyUrl()"
               class="copied"
-              aria-hidden="false"
-              (click)="copyUrl()">
-              assignment_turned_in
-            </mat-icon>
+              matTooltip="Copied to clipboard" 
+              mat-icon-button>
+              <mat-icon aria-hidden="false" aria-label="Copied to clipboard" color="secondary">
+                assignment_turned_in
+              </mat-icon>
+            </button>
         </mat-card-content>
     </mat-card>
   </div>

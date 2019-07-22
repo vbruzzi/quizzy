@@ -15,9 +15,11 @@ import { MatButtonModule,
          MatFormFieldModule,
          MatCheckboxModule,
          MatDividerModule,
-         MatExpansionModule,
+         MatExpansionModule,  
          MatProgressBarModule,
-         MatToolbarModule } from '@angular/material';
+         MatToolbarModule,
+         MatTooltipModule,
+         MatProgressSpinnerModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz/quiz.component';
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatListModule,
     MatIconModule,
+    MatTooltipModule,
     MatDividerModule,
     MatInputModule,
     MatCardModule,
@@ -66,6 +69,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
