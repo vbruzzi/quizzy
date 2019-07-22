@@ -32,7 +32,8 @@ export class CreateComponent implements OnInit {
     const quiz = this.quizForm.value;
     const submitItem = {
       name: quiz.quizName,
-      questions: []
+      questions: [],
+      public: quiz.public
     };
 
     // Formatting for submission
@@ -77,6 +78,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     this.quizForm = this.fb.group({
       quizName: '',
+      public: false,
       questions: this.fb.array([])
     });
     this.addQuestion();

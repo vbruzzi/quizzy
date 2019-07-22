@@ -7,6 +7,10 @@
             <input id="quizName" placeholder="Quiz Name" matInput formControlName="quizName" required>
         </mat-form-field>
 
+          <mat-checkbox id="public" formControlName="public">
+            Make public
+          </mat-checkbox>
+
         <div class="questions "formArrayName="questions">
             <mat-card
               *ngFor="let question of formQuestions.controls; let i = index;"

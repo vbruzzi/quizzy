@@ -15,6 +15,10 @@
   width: 150px;
 }
 
+#public {
+  margin-left: 15px;
+}
+
 mat-form-field {
     display: inline-block;
 }
