@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { QuizComponent } from '../quiz/quiz.component';
 import { QuizesService } from '../quizes.service';
+import { TemplateParseError } from '@angular/compiler';
 
 // Quiz creation component
 @Component({
@@ -20,8 +21,10 @@ export class CreateComponent implements OnInit {
   model = {question: 'Question', options: ['', '', '', '']};
   formIsValid: any;
   submitted = false;
+  baseUrl = 'quizzy-vbruzzi.herokuapp.com/quiz/';
   quizUrl = '';
   quizMinReq = false;
+  copied = false;
 
   // Returns the questions in quizForm.
   get formQuestions() {
@@ -60,6 +63,7 @@ export class CreateComponent implements OnInit {
       this.quizUrl = data._id;
       this.submitted = true;
     });
+
   }
 
   // Empty question skeleton
@@ -73,6 +77,21 @@ export class CreateComponent implements OnInit {
       option4: [],
     });
     this.formQuestions.push(question);
+  }
+
+  copyUrl(): void {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.baseUrl + this.quizUrl;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.copied = true;
   }
 
   ngOnInit() {

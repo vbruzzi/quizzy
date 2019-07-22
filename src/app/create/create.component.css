@@ -47,7 +47,7 @@ mat-card-content {
   background-color: lightgray;
 }
 
-span {
+span, .copied {
   font-weight: 500;
   color: darkgreen;
 }

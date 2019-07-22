@@ -80,7 +80,7 @@
             mat-button
             class="save"
             (click)="onSubmit()"
-            [ngClass]="{'notReady' : formIsValid != 'VALID' || formQuestions.controls.length < 1}"
+            [disabled]="formIsValid != 'VALID' || formQuestions.controls.length < 1"
             mat-raised-button>
             <mat-icon aria-hidden="false" aria-label="Example home icon" color="secondary">
               save_alt
@@ -88,16 +88,33 @@
             Submit
           </button>
         </div>
-
-        <div *ngIf="submitted">
-            <mat-card>
-                <mat-card-content>
-                    Your quiz link is: <br>
-                    quizzy-vbruzzi.herokuapp.com/quiz/<span>{{quizUrl}}</span>
-                </mat-card-content>
-            </mat-card>
-        </div>
     </form>
+  </div>
+  <div *ngIf="submitted">
+    <mat-card>
+        <mat-card-content>
+            Your quiz link is:
+
+            <br>
+            {{baseUrl}}
+            <br>
+
+            <span>{{quizUrl}}</span>
+            <mat-icon
+              *ngIf="!copied"
+              aria-hidden="false"
+              (click)="copyUrl()">
+              assignment
+            </mat-icon>
+            <mat-icon
+              *ngIf="copied"
+              class="copied"
+              aria-hidden="false"
+              (click)="copyUrl()">
+              assignment_turned_in
+            </mat-icon>
+        </mat-card-content>
+    </mat-card>
   </div>
 </div>
 
