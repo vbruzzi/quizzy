@@ -1,24 +1,36 @@
-<app-header>
+<app-header></app-header>
 
-</app-header>
 <div id="question">
-    <h1 id="title">
-        {{ quizName }}
-    </h1>
-
-    <app-quizview
-    *ngIf="status"
-    [questions]="questions"
-    (finishedQuiz)="showResults($event)">
-    </app-quizview>
+    <mat-spinner 
+        *ngIf='!questions'
+        [@fadeOut]='!questions'
+        (@fadeOut.done) = 'formReady()'
+        class="loading">
+    </mat-spinner>
+    <div
+        class="quiz"
+        *ngIf="quizLoaded"
+        [@fadeIn]="quizLoaded"
+        [@fadeOut]="!quizLoaded"
+        (@fadeOut.done)="endQuiz()">
+            <h1 id="title">
+                {{ quizName }}
+            </h1>
+            
+            <app-quizview 
+                [questions]="questions"
+                (finishedQuiz)="showResults($event)">
+            </app-quizview>
+    </div>
+    
 
     <app-quizresults
-    *ngIf="!status"
-    [answers]="answers"
-    >
-
+        *ngIf="!status"
+        [@fadeIn]="!status"
+        [answers]="answers"
+        [quizUrl]="quizUrl"
+        (finalResult)="uploadAnswers($event)">
     </app-quizresults>
 </div>
-<app-footer>
 
-</app-footer>
+<app-footer></app-footer>

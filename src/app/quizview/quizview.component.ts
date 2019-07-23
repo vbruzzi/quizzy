@@ -12,12 +12,16 @@ export class QuizviewComponent implements OnInit {
   
   // Stores user answers
   answers: Array<Object> = [];
+  
   // Keeps track of current question
   currentQuestion: Object;
+
   // Amount of questions
   count: number;
+
   // user choice for current question, used with ngmodel
   choice:string;
+
   // Progress bar values
   progress:number = 0;
   progressIncrements: number;

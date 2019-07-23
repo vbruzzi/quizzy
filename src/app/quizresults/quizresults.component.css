@@ -1,5 +1,10 @@
 mat-card {
     padding: 50px;
+    text-align: center;
+}
+
+.result {
+    padding: 15px;
 }
 
 .bad {
@@ -18,4 +23,10 @@ mat-list {
     display: flex;
     flex-direction: column;
     align-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

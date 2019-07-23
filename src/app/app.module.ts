@@ -30,11 +30,13 @@ import { QuizresultsComponent } from './quizresults/quizresults.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { QuizShareComponent } from './quiz-share/quiz-share.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'quiz/:id', component: QuizComponent},
+  {path: 'quiz/random', component: QuizComponent},
   {path: 'create', component: CreateComponent},
 ];
 
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     QuizresultsComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    QuizShareComponent
   ],
   imports: [
     BrowserModule,

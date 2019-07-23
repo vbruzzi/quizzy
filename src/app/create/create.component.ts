@@ -42,14 +42,10 @@ export class CreateComponent implements OnInit {
   model = {question: 'Question', options: ['', '', '', '']};
   // Status for submit button
   formIsValid: any;
-  // URL for page
-  baseUrl = 'quizzy-vbruzzi.herokuapp.com/quiz/';
   // Quiz ID
   quizUrl = '';
   // Quiz is submitted
   submitted = false;
-  // Copied quiz url
-  copied = false;
   // Submission is complete (for displaying quiz url)
   complete = false;
 
@@ -111,21 +107,6 @@ export class CreateComponent implements OnInit {
     if (this.submitted) {
       this.complete = true;
     }
-  }
-
-  copyUrl(): void {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = this.baseUrl + this.quizUrl;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-    this.copied = true;
   }
 
   ngOnInit() {

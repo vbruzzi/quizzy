@@ -1,0 +1,13 @@
+.copied {
+    font-weight: 500;
+    color: darkgreen;
+}
+
+mat-card-content {
+    text-align: center;
+    padding: 30px !important;
+}
+
+mat-card {
+    max-width: 330px;
+}

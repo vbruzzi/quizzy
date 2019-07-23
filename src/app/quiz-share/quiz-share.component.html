@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-content>
+      Share the quiz!
+
+      <br>
+      {{baseUrl}}
+      <br>
+
+      <span>{{quizUrl}}</span>
+
+      <button
+        *ngIf="!copied"
+        (click)="copyUrl()"
+        mat-icon-button>
+        <mat-icon aria-hidden="false" aria-label="Copy to clipboard" color="secondary">
+          assignment
+        </mat-icon>
+      </button>
+
+      <button
+        *ngIf="copied"
+        (click)="copyUrl()"
+        class="copied"
+        matTooltip="Copied to clipboard" 
+        mat-icon-button>
+        <mat-icon aria-hidden="false" aria-label="Copied to clipboard" color="secondary">
+          assignment_turned_in
+        </mat-icon>
+      </button>
+  </mat-card-content>
+</mat-card>

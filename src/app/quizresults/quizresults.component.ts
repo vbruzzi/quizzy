@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -9,6 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class QuizresultsComponent{
   @Input() answers;
+  @Input() quizUrl;
+  @Output() finalResult = new EventEmitter<number>();
 
   correctAnswers: number = 0;
   result: string;
@@ -21,9 +23,10 @@ export class QuizresultsComponent{
         this.correctAnswers++;
       }
     });
-    console.log(this.correctAnswers + '/' + this.answers.length)
+
     this.result = this.correctAnswers + '/' + this.answers.length;
     this.score = this.correctAnswers/this.answers.length;
+    this.finalResult.emit(this.score);
   }
 
   ngOnChanges() {

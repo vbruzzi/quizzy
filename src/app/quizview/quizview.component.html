@@ -1,7 +1,7 @@
 <div *ngIf="questions">
     <mat-progress-bar mode="determinate" value="{{ progress }}"></mat-progress-bar>
     <mat-card>
-        <mat-card-content>
+        <mat-card-content class="questionTitle">
             <h1>{{ currentQuestion['question'] }}</h1>
         </mat-card-content>
     </mat-card>
@@ -12,7 +12,7 @@
                     <mat-grid-tile #options *ngFor="let option of currentQuestion['options']">
                         <mat-radio-button
                         [value]="option">
-                            {{ option }}
+                        <span>{{ option }}</span>
                         </mat-radio-button>
                     </mat-grid-tile>
                 </mat-grid-list>
